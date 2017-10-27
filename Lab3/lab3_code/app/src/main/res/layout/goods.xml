@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorGray" />
+
+    <ImageView
+        android:id="@+id/goods_picture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/arla" />
+
+    <ImageView
+        android:id="@+id/imageView_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:background="@mipmap/back"
+        android:clickable="true"
+        android:onClick="back" />
+
+    <TextView
+        android:id="@+id/goods_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="15dp"
+        android:text="TextView"
+        android:textColor="@color/colorBrack"
+        android:textSize="16dp" />
+
+    <ImageView
+        android:id="@+id/imageStar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="148dp"
+        android:background="@mipmap/empty_star"
+        android:clickable="true"
+        android:onClick="star" />
+
+    <TextView
+        android:id="@+id/goods_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="15dp"
+        android:text="￥243.00"
+        android:textColor="@color/colorBrack" />
+
+    <TextView
+        android:id="@+id/goods_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        android:layout_marginLeft="15dp"
+        android:text="版本   8GB"
+        android:textColor="@color/colorGray" />
+
+    <TextView
+        android:id="@+id/moreMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="15dp"
+        android:text="更多产品信息"
+        android:textColor="@color/colorBrack"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/goods_Cart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="210dp"
+        android:background="@mipmap/shoplist"
+        android:clickable="true"
+        android:onClick="shopping" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="260dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/colorLine"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="215dp"
+        android:layout_marginRight="80dp"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorLine"
+        android:layout_gravity="center_horizontal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="320dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/colorLine"/>
+
+    <ListView
+        android:id="@+id/listView_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="335dp"/>
+
+</RelativeLayout>

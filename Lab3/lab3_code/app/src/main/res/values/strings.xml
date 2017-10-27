@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Lab3</string>
+    <string-array name="item_letter_array">
+        <item>E</item>
+        <item>A</item>
+        <item>D</item>
+        <item>K</item>
+        <item>W</item>
+        <item>M</item>
+        <item>F</item>
+        <item>M</item>
+        <item>L</item>
+        <item>B</item>
+    </string-array>
+    <string-array name="item_name_array">
+        <item>Enchated Forest</item>
+        <item>Arla Milk</item>
+        <item>Devondale Milk</item>
+        <item>Kindle Oasis</item>
+        <item>Waitrose 早餐麦片</item>
+        <item>Mcvitie\'s 饼干</item>
+        <item>Ferrero Rocher</item>
+        <item>Maltesers</item>
+        <item>Lindt</item>
+        <item>Borggreve</item>
+    </string-array>
+    <string-array name="goods_price_array">
+        <item>￥5.00</item>
+        <item>￥59.00</item>
+        <item>￥79.00</item>
+        <item>￥2399.00</item>
+        <item>￥179.00</item>
+        <item>￥14.90</item>
+        <item>￥132.59</item>
+        <item>￥141.43</item>
+        <item>￥139.43</item>
+        <item>￥28.90</item>
+    </string-array>
+    <string-array name="goods_msg_item">
+        <item>作者  Johanna Basford</item>
+        <item>产地  德国</item>
+        <item>产地  澳大利亚</item>
+        <item>版本  8G</item>
+        <item>重量  2Kg</item>
+        <item>产地  英国</item>
+        <item>重量  300g</item>
+        <item>重量  118g</item>
+        <item>重量  249g</item>
+        <item>重量  640g</item>
+    </string-array>
+</resources>
