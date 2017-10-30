@@ -1,5 +1,6 @@
 package com.example.a15945.lab3;
 
+import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,14 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
@@ -26,9 +34,15 @@ public class shoppingList extends AppCompatActivity {
     private commonAdapter mAdapter = null;
     private String[] myDatas = null;
     private String[] myDatas1 = null;
+    private String[] myDatas2 = null;
+    private int[] data_img_id;
     private FloatingActionButton FAB;
     private static int rmBug = 0;
     private static int[] rmBugArr;
+
+    public static final String STATICACTION = "com.example.a15945.lab3.staticReceiver";
+    public static final String DYNAMICACTION = "com.example.a15945.lab3.dynamicReceiver";
+    public static List<int[]> msg = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +72,8 @@ public class shoppingList extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra("position",position);
                 intent.setClass(shoppingList.this,goods.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//设置不要刷新将要跳到的界面
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//它可以关掉所要到的界面中间的activity
                 startActivity(intent);
                 //Toast.makeText(getApplication(),"s",Toast.LENGTH_SHORT).show();
             }
@@ -75,6 +91,39 @@ public class shoppingList extends AppCompatActivity {
         FAB = (FloatingActionButton)findViewById(R.id.floatingActionButton);
         FABListener fabListener = new FABListener();
         FAB.setOnClickListener(fabListener);
+
+        //发送静态广播
+        Intent intent = new Intent();
+        intent.setAction(STATICACTION);
+
+            Random random = new Random();
+            int randomNumber = random.nextInt(10);
+            myDatas2 = getResources().getStringArray(R.array.goods_price_array);
+            data_img_id = new int[]{R.mipmap.enchatedforest,R.mipmap.arla,R.mipmap.devondale,R.mipmap.kindle,R.mipmap.waitrose,R.mipmap.mcvitie,R.mipmap.ferrero,R.mipmap.maltesers,R.mipmap.lindt,R.mipmap.borggreve};
+
+        Bundle bundle = new Bundle();
+        bundle.putString("name", myDatas1[randomNumber]);
+        bundle.putString("price", myDatas2[randomNumber]);
+        bundle.putInt("imgID",data_img_id[randomNumber]);
+        intent.putExtras(bundle);
+        sendBroadcast(intent);
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMain(Event0 event){
+        int[] number = new int[]{0};
+        number[0] = event.getMessage();
+        msg.add(number);
+      //  Toast.makeText(getApplication(),""+number[0],Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //反注册
+        EventBus.getDefault().unregister(this);
     }
 
     class FABListener implements View.OnClickListener {
@@ -82,8 +131,10 @@ public class shoppingList extends AppCompatActivity {
         public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(shoppingList.this,shoppingcartList.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//设置不要刷新将要跳到的界面
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//它可以关掉所要到的界面中间的activity
                 startActivity(intent);
-               // overridePendingTransition(R.anim.open_in, R.anim.open_out);
+
         }
     }
 

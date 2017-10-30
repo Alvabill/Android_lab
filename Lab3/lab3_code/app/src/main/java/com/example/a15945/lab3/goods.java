@@ -2,6 +2,7 @@ package com.example.a15945.lab3;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.a15945.lab3.shoppingList.DYNAMICACTION;
 
 /**
  * Created by 15945 on 2017/10/23.
@@ -29,7 +34,6 @@ public class goods extends Activity{
     private List<String> data_msg;
     private ImageView imageView;
     private int[] data_img_id;
-    private static int j = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,20 +111,27 @@ public class goods extends Activity{
         for(int i = 0;i<data_name.size();i++){
             if(str.equals(data_name.get(i))){
                 pos = i;
-                SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-                editor.putInt("number"+j,pos);
-                editor.commit();
-           //     Toast.makeText(getApplicationContext(), pos+"设置成功", Toast.LENGTH_SHORT).show();
-                j++;
+                EventBus.getDefault().post(new Event0(pos));
                 break;
             }
         }
-        SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-        editor.putInt("j",j);
-        editor.commit();
-     //   Toast.makeText(getApplicationContext(), j+"j设置成功", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this,shoppingcartList.class);
-//        intent.putExtra("pos",pos);
-//        //startActivity(intent);
+
+        //注册动态广播
+        IntentFilter dynamic_Filter = new IntentFilter();
+        dynamic_Filter.addAction(DYNAMICACTION);
+        DynamicReceiver dynamicReceiver = new DynamicReceiver();
+        registerReceiver(dynamicReceiver,dynamic_Filter);
+        //unregisterReceiver(dynamicReceiver);
+
+        //发送动播
+        Intent intent = new Intent();
+        intent.setAction(DYNAMICACTION);
+        Bundle bundle = new Bundle();
+        bundle.putString("name",str);
+        bundle.putInt("imgID",data_img_id[pos]);
+        intent.putExtras(bundle);
+        sendBroadcast(intent);
+
     }
+
 }

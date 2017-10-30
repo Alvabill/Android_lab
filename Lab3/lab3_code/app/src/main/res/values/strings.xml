@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab3</string>
+    <string name="app_name">Lab4</string>
     <string-array name="item_letter_array">
         <item>E</item>
         <item>A</item>

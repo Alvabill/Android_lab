@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import static com.example.a15945.lab3.shoppingList.msg;
+
 
 @SuppressLint("ParserError")
 public class shoppingcartList extends Activity {
@@ -34,32 +36,10 @@ public class shoppingcartList extends Activity {
 
         listView = (ListView) this.findViewById(R.id.shoppingcart);
 
-        SharedPreferences read = getSharedPreferences("data", MODE_PRIVATE);
-        int value = read.getInt("j",0);
-        int p = 0;
         list = getData();
-        for (int j = 0;j<value;j++){
-            p = read.getInt("number"+j,100);
-            if(p != 100)
-            list.add(push(p));
-            else{
-                //p == 100 说明已经删除数据，下面用替换的方式删除数据源
-                SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-                int k = 0;
-                for(k = j;k<value-1;k++){
-                    int k1 = read.getInt("number"+(k+1),100);
-                    if(k1 != 100) {
-                        editor.putInt("number" + k, k1);
-                        editor.commit();
-                    }
-                        else break;
-                }
-                editor.remove("number"+ k);
-                editor.commit();
-
-            }
+        for(int i = 0;i<msg.size();i++){
+            list.add(push(msg.get(i)[0]));
         }
-//        Toast.makeText(getApplicationContext(), "value："+value, Toast.LENGTH_LONG).show();
 
 
         simpleAdapter = new SimpleAdapter(this,list,R.layout.itemcart,
@@ -77,6 +57,8 @@ public class shoppingcartList extends Activity {
                     Intent intent = new Intent();
                     intent.putExtra("name", name);
                     intent.setClass(shoppingcartList.this, goods.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//设置不要刷新将要跳到的界面
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//它可以关掉所要到的界面中间的activity
                     startActivity(intent);
                 }else
                 Toast.makeText(getApplication() ,"我要剁手", Toast.LENGTH_LONG).show();
@@ -98,10 +80,9 @@ public class shoppingcartList extends Activity {
                                 public void onClick(DialogInterface dialog, int which) {
                                   //  Toast.makeText(getApplication(), "您选择了[确定]", Toast.LENGTH_SHORT).show();
                                     list.remove(position);
+                                    msg.remove(position-1);
                                     simpleAdapter.notifyDataSetChanged();
-                                    SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-                                    editor.remove("number"+(position-1));
-                                    editor.commit();
+//
                                 }
                             })
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -121,9 +102,12 @@ public class shoppingcartList extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(shoppingcartList.this,shoppingList.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//设置不要刷新将要跳到的界面
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//它可以关掉所要到的界面中间的activity
                 startActivity(intent);
             }
         });
+
     }
 
     public Map<String,Object> push(int position){
