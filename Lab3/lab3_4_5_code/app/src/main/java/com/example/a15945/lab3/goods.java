@@ -34,6 +34,9 @@ public class goods extends Activity{
     private ImageView imageView;
     private int[] data_img_id;
 
+    DynamicReceiver dynamicReceiver = new DynamicReceiver();
+    shoppingWidget sWidget = new shoppingWidget();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,11 +121,10 @@ public class goods extends Activity{
         //注册动态广播
         IntentFilter dynamic_Filter = new IntentFilter();
         dynamic_Filter.addAction(DYNAMICACTION);
+
             //DynamicReceiver注册
-            DynamicReceiver dynamicReceiver = new DynamicReceiver();
             registerReceiver(dynamicReceiver,dynamic_Filter);
             //Widget动态注册
-            shoppingWidget sWidget = new shoppingWidget();
             registerReceiver(sWidget,dynamic_Filter);
 
         //发送动播
@@ -134,7 +136,13 @@ public class goods extends Activity{
         intent.putExtras(bundle);
         sendBroadcast(intent);
 
-       // unregisterReceiver(dynamicReceiver);
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(dynamicReceiver);
+        unregisterReceiver(sWidget);
     }
 
 }

@@ -17,6 +17,7 @@ import static com.example.a15945.lab3.shoppingList.DYNAMICACTION;
  */
 
 public class DynamicReceiver extends BroadcastReceiver {
+    public static int i  = 0;
     @Override
     public void onReceive(Context context, Intent intent) {
         if(intent.getAction().equals(DYNAMICACTION)){
@@ -32,12 +33,12 @@ public class DynamicReceiver extends BroadcastReceiver {
                     .setSmallIcon(R.mipmap.full_star)
                     .setAutoCancel(true)
                     //通知栏点击跳转
-                    .setContentIntent(PendingIntent.getActivity(context,0,new Intent(context,shoppingcartList.class),0));
+                    .setFullScreenIntent(PendingIntent.getActivity(context,0,new Intent(context,shoppingcartList.class),0),true);
             //获取状态栏管理
             NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification notification = builder.build();
             //绑定Notification，发送通知请求
-            manager.notify(0,notification);
+            manager.notify(i++,notification);
 
         }
     }

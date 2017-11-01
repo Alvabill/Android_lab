@@ -37,7 +37,7 @@ public class StaticReceiver extends BroadcastReceiver {
                     .setLargeIcon(bm)
                     .setSmallIcon(R.mipmap.full_star)
                     .setAutoCancel(true)
-                    .setContentIntent(pendingIntent);
+                    .setFullScreenIntent(pendingIntent,false);
             //获取状态栏管理
             NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification notification = builder.build();

@@ -68,6 +68,14 @@ public class shoppingWidget extends AppWidgetProvider {
 
     }
 
+    /**
+     * 当小部件大小改变时
+     */
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+
+    }
 
     @Override
     public void onEnabled(Context context) {
