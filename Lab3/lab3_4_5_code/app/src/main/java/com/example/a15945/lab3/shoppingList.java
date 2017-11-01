@@ -1,6 +1,5 @@
 package com.example.a15945.lab3;
 
-import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

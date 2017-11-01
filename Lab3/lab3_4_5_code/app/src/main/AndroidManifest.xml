@@ -6,28 +6,35 @@
         android:allowBackup="true"
         android:icon="@mipmap/shoplist"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/shoplist"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".shoppingList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".shoppingcartList">
-
-        </activity>
-
-        <activity android:name=".goods" android:launchMode="singleInstance">
-
-        </activity>
+        <activity android:name=".shoppingcartList"></activity>
+        <activity
+            android:name=".goods"
+            android:launchMode="singleInstance"></activity>
 
         <receiver android:name=".StaticReceiver">
             <intent-filter>
-                <action android:name="com.example.a15945.lab3.staticReceiver"></action>
+                <action android:name="com.example.a15945.lab3.staticReceiver" />
             </intent-filter>
+        </receiver>
+        <receiver android:name=".shoppingWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.a15945.lab3.staticReceiver" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/shopping_widget_info" />
         </receiver>
     </application>
 

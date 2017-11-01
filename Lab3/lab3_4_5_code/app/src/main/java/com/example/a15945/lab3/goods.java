@@ -3,7 +3,6 @@ package com.example.a15945.lab3;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
@@ -119,9 +118,12 @@ public class goods extends Activity{
         //注册动态广播
         IntentFilter dynamic_Filter = new IntentFilter();
         dynamic_Filter.addAction(DYNAMICACTION);
-        DynamicReceiver dynamicReceiver = new DynamicReceiver();
-        registerReceiver(dynamicReceiver,dynamic_Filter);
-        //unregisterReceiver(dynamicReceiver);
+            //DynamicReceiver注册
+            DynamicReceiver dynamicReceiver = new DynamicReceiver();
+            registerReceiver(dynamicReceiver,dynamic_Filter);
+            //Widget动态注册
+            shoppingWidget sWidget = new shoppingWidget();
+            registerReceiver(sWidget,dynamic_Filter);
 
         //发送动播
         Intent intent = new Intent();
@@ -132,6 +134,7 @@ public class goods extends Activity{
         intent.putExtras(bundle);
         sendBroadcast(intent);
 
+       // unregisterReceiver(dynamicReceiver);
     }
 
 }
