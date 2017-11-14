@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wwb.bill.musicbox.MainActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cover"
+        android:background="@mipmap/image"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true" />
+
+    <SeekBar
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/cover"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeBegin"
+        android:text="00:00"
+        android:textColor="#555"
+        android:layout_toLeftOf="@id/seekBar"
+        android:layout_alignBottom="@id/seekBar"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/playtime"
+        android:text="     "
+        android:textColor="#555"
+        android:layout_toRightOf="@id/seekBar"
+        android:layout_alignBottom="@id/seekBar" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/playStatus"
+        android:text="   "
+        android:textColor="#555"
+        android:layout_above="@id/timeBegin"
+        android:layout_alignLeft="@id/timeBegin"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/stopBtn"
+        android:text="STOP"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/seekBar"
+        android:layout_marginTop="35dp" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/playBtn"
+        android:text="PLAY"
+        android:textSize="16sp"
+        android:layout_toLeftOf="@id/stopBtn"
+        android:layout_alignBottom="@id/stopBtn"
+        android:layout_marginRight="5dp"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/quitBtn"
+        android:text="QUIT"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/stopBtn"
+        android:layout_alignBottom="@id/stopBtn"
+        android:layout_marginLeft="5dp"/>
+
+</RelativeLayout>
