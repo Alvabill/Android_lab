@@ -16,6 +16,19 @@ import android.support.annotation.Nullable;
 
 public class MusicService extends Service {
 
+    @Override
+    public void onCreate() {
+        try{
+            //模拟器测试时歌曲路径mediaPlayer.setDataSource("/data/elt.mp3");
+            //手机测试路径
+            mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getAbsolutePath() + "/melt.mp3");
+            mediaPlayer.prepare();
+            mediaPlayer.setLooping(true);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        super.onCreate();
+    }
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -98,6 +111,15 @@ public class MusicService extends Service {
                 case 105:
                     //拖动进度条，服务处理函数
                     TrackingTouch(data.readInt());
+                    break;
+                case 106:
+                    try {
+                        mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getAbsolutePath() + "/melt.mp3");
+                        mediaPlayer.prepare();
+                        mediaPlayer.setLooping(true);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
                     break;
             }
             return super.onTransact(code, data, reply, flags);

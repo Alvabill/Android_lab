@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -26,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean hasPermission = false;
     private static boolean isStopped = false;
     private static boolean isCreate = false;
+
 
 
     @Override
@@ -67,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         unbindService(sc);
+    }
+
+    @Override
+    protected void onResume() {
+      //  startPlaying();
+        super.onResume();
     }
 
     private void ViewID(){
@@ -132,26 +142,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-//        int SplayTimeNow = 0;
-//        int SplayTime = 0;
-//        int isPlay = 0;
-//        try{
-//            int code = 104;
-//            Parcel data = Parcel.obtain();
-//            Parcel reply = Parcel.obtain();
-//            mBinder.transact(code, data, reply, 0);
-//
-//            SplayTimeNow = reply.readInt();
-//            SplayTime = reply.readInt();
-//            isPlay = reply.readInt();
-//            reply.recycle();
-//            data.recycle();
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//        seekBar.setProgress(SplayTimeNow);
-//        seekBar.setMax(SplayTime);
-//        playTime.setText(time.format(SplayTime));
         seekBar.setProgress(musicService.mediaPlayer.getCurrentPosition());
         seekBar.setMax(musicService.mediaPlayer.getDuration());
         playTime.setText(time.format(musicService.mediaPlayer.getDuration()));
@@ -264,7 +254,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-    
+
+
     private ServiceConnection sc = new ServiceConnection() {
         //当Activity和Service连接成功时回调该方法
         @Override
@@ -299,11 +290,47 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(grantResults.length >0 &&grantResults[0]==PackageManager.PERMISSION_GRANTED){
             //用户同意授权
+            startPlaying();
+            hasPermission = true;
         }else{
             //用户拒绝授权
             System.exit(0);
         }
         return;
+    }
+
+    private void startPlaying(){
+        try{
+            int code = 106;
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+            mBinder.transact(code, data, reply, 0);
+            reply.recycle();
+            data.recycle();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        int SplayTimeNow = 0;
+        int SplayTime = 0;
+        int isPlay = 0;
+        try{
+            int code = 104;
+            Parcel data = Parcel.obtain();
+            Parcel reply = Parcel.obtain();
+            mBinder.transact(code, data, reply, 0);
+
+            SplayTimeNow = reply.readInt();
+            SplayTime = reply.readInt();
+            isPlay = reply.readInt();
+            reply.recycle();
+            data.recycle();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        seekBar.setProgress(SplayTimeNow);
+        seekBar.setMax(SplayTime);
+        playTime.setText(time.format(SplayTime));
     }
 
 }
