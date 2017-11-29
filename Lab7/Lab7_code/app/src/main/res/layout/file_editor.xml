@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        tools:ignore="Suspicious0dp">
+
+        <TextView
+            android:id="@+id/File_Editor_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="21dp"
+            android:text="@string/file_editor"
+            android:textAlignment="center"
+            android:textColor="@color/colorText"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/fileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/File_Editor_text"
+            android:layout_marginTop="26dp"
+            android:ems="10"
+            android:hint="@string/file_name"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:imeOptions="actionNext"/>
+
+        <EditText
+            android:id="@+id/fileEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/fileName"
+            android:ems="10"
+            android:hint="@string/file_content_here"
+            android:gravity="top"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/loadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/deleteBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:text="@string/load"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="14dp"
+            android:text="@string/delete"
+            android:textColor="?attr/textColorError"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/clearfileEditBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/loadBtn"
+            android:layout_alignBottom="@+id/loadBtn"
+            android:layout_alignParentEnd="true"
+            android:text="@string/clear"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/loadBtn"
+            android:layout_alignBottom="@+id/loadBtn"
+            android:layout_alignParentStart="true"
+            android:text="@string/save"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</LinearLayout>

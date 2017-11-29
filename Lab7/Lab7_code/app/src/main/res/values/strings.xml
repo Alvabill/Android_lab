@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Lab7</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="Password">Password</string>
+    <string name="ok">OK</string>
+    <string name="clear">CLEAR</string>
+    <string name="file_editor">File Editor</string>
+    <string name="file_name">File Name</string>
+    <string name="delete">DELETE</string>
+    <string name="load">LOAD</string>
+    <string name="save">SAVE</string>
+    <string name="file_content_here">File Content Here</string>
+</resources>
