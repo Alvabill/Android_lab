@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lab8</string>
+    <string name="text1">增加条目</string>
+    <string name="name">姓名</string>
+    <string name="birthday">生日</string>
+    <string name="gifts">礼物</string>
+    <string name="title">( •̀ ω •́ )✧</string>
+    <string name="addbirthday">生日：</string>
+    <string name="addName">姓名：</string>
+    <string name="addgifts">礼物：</string>
+</resources>

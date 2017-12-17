@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="27dp"
+        android:layout_toStartOf="@+id/dialogBtnSuccess"
+        android:text="@string/title"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/addName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:text="@string/addbirthday" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="20dp"
+        android:text="@string/addgifts" />
+
+    <TextView
+        android:id="@+id/dialogName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginStart="24dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/dialogBirthday"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dialogName"
+        android:layout_below="@+id/dialogName"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/dialogGifts"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignStart="@+id/dialogBirthday"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/phoneText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/dialogGifts"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/phone"
+        android:visibility="gone"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/dialogBtnSuccess"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dialogBtnQuit"
+        android:layout_alignBottom="@+id/dialogBtnQuit"
+        android:layout_alignEnd="@+id/dialogGifts"
+        android:text="确认修改"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/dialogBtnQuit"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneText"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@+id/dialogBtnSuccess"
+        android:text="放弃修改"
+        android:textSize="12sp" />
+</RelativeLayout>
