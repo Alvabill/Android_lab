@@ -1,0 +1,5 @@
+<root>
+    <item name='java.util.Observable'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>
